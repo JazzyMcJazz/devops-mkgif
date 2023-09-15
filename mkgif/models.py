@@ -1,6 +1,8 @@
-from django.db import models
+from django.core.files.storage import default_storage
 from django.contrib.auth.models import User
+from django.db import models
 import django_rq
+from shutil import rmtree
 from .utils import mk_gif_ffmpeg
 
 class Animation(models.Model):
@@ -13,6 +15,14 @@ class Animation(models.Model):
             'params': params,
             }
         )
+
+    def remove(self):
+        path = f'media/{self.pk}'
+        self.delete()
+        try:
+            rmtree(path)
+        except OSError as e:
+            print("Error: %s : %s" % (path, e.strerror))
 
 
 class Image(models.Model):

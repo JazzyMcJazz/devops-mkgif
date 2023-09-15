@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.9.8" />
+        <script src="https://unpkg.com/htmx.org@1.9.3" integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua" crossorigin="anonymous"></script>
         <title>Make GIF</title>
     </head>
     <body>
@@ -25,10 +26,22 @@
         <main>
             <p>My GIF Animations:</p>
             <table>
+                {% csrf_token %}
                 {% for anim in anims %}
                 <tr>
                 <td>{{ anim.pk }}</td>
                 <td><a href="{% url 'mkgif:details' anim.pk %}">{{ anim.name }}</a></td>
+                <td>
+                    <span
+                        hx-delete="{% url 'mkgif:details' anim.pk %}"
+                        hx-trigger="click"
+                        hx-swap="outerHTML"
+                        hx-target="closest tr"
+                        style="cursor: pointer;"
+                    >
+                        ❌
+                    </span>
+                </td>
                 </tr>
                 {% endfor %}
             </table>

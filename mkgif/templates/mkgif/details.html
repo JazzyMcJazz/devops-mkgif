@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.9.8" />
+        <script src="https://unpkg.com/htmx.org@1.9.3" integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua" crossorigin="anonymous"></script>
+        <title>Make GIF</title>
+    </head>
+    <body hx-boost="true">
+        <nav>
+            <ul>
+                <li><a href="{% url 'mkgif:index' %}">Home</a></li>
+                <li>
+                    <span>{{ user }}</span>
+                    <ul>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                    </span>
+                </li>
+            </ul>
+        </nav>
+        
+        {% if loading %}
+            {% include 'mkgif/snippets/gif_loader.html' %}
+        {% else %}
+            {% include 'mkgif/snippets/gif.html' %}
+        {% endif %}
+    </body>
+</html>
