@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mkgif',
+    'django_rq'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +123,22 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Media files
+DATA_UPLOAD_MAX_NUMBER_FILES = 500
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL  = '/media/'
+
+# Django-RQ
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': '6379',
+        'DB': 0,
+        'DEFAULT_TIMEOUT': 360,
+    }
+}
