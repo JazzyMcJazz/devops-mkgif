@@ -1,0 +1,30 @@
+<div id="form">
+    <span>
+        <a 
+            hx-get="{% url 'mkgif:image_form' %}"
+            hx-trigger="click"
+            hx-target="#form"
+            hx-swap="outerHTML"
+            style="cursor: pointer;"
+        >Images</a>
+        <span>Video</span>
+    </span>
+
+    <form action="{% url 'mkgif:index' %}" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend><label>Create GIF from video</label></legend>
+            {% csrf_token %}
+            <input name="gif_name" type="text" placeholder="GIF name" required>
+            <label for="fps">Framerate (10-30)</label>
+            <input name="fps" type="number" value="15" max="30" min="10" required>
+            <label for="fps">Size (100-1024p)</label>
+            <input name="size" type="number" value="720" max="1024" min="100" required>
+            <br>
+            <input name="files" type="file">
+            <input name="type" type="hidden" value="video" required>
+    
+            <br>
+            <button>Submit</button>
+        </fieldset>
+    </form>
+</div>

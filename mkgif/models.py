@@ -1,4 +1,3 @@
-from django.core.files.storage import default_storage
 from django.contrib.auth.models import User
 from django.db import models
 import django_rq
@@ -25,10 +24,10 @@ class Animation(models.Model):
             print("Error: %s : %s" % (path, e.strerror))
 
 
-class Image(models.Model):
-    def image_path(self, filename):
+class File(models.Model):
+    def file_path(self, filename):
         return f'{self.animation.pk}/{filename}'
 
     animation = models.ForeignKey('Animation', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=image_path)
+    file = models.FileField(upload_to=file_path)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

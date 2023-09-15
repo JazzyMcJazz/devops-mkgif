@@ -7,5 +7,7 @@ app_name = 'mkgif'
 urlpatterns = [
     path('', views.index, name='index'),
     path('details/<int:pk>/', views.details, name='details'),
-    path('gif/<int:pk>/', views.gif, name='gif')
+    path('snippets/gif/<int:pk>/', views.gif, name='gif'),
+    path('snippets/forms/images/', views.image_form, name='image_form'),
+    path('snippets/forms/video/', views.video_form, name='video_form'),
 ]

@@ -46,19 +46,8 @@
                 {% endfor %}
             </table>
             <hr>
-            <form action="{% url 'mkgif:index' %}" method="POST" enctype="multipart/form-data">
-                <fieldset>
-                    <legend><label>Add New GIF Animation</label></legend>
-                    {% csrf_token %}
-                    <input name="name" type="text" placeholder="Animation name">
-                    <input name="imgs" type="file" multiple>
-                    <label for="frames">Framerate</label>
-                    <input name="frames" type="number" value="30" max="60" min="15">
 
-                    <br>
-                    <button>Submit</button>
-                </fieldset>
-            </form>
+            {% include 'mkgif/snippets/image_form.html' %}
         </main>
     </body>
 </html>
