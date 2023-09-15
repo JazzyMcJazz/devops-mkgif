@@ -129,6 +129,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Media files
 DATA_UPLOAD_MAX_NUMBER_FILES = 500
+TEMP_ROOT = BASE_DIR / 'tmp'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL  = '/media/'
 

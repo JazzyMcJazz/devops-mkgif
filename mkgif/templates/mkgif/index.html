@@ -52,6 +52,10 @@
                     {% csrf_token %}
                     <input name="name" type="text" placeholder="Animation name">
                     <input name="imgs" type="file" multiple>
+                    <label for="frames">Framerate</label>
+                    <input name="frames" type="number" value="30" max="60" min="15">
+
+                    <br>
                     <button>Submit</button>
                 </fieldset>
             </form>

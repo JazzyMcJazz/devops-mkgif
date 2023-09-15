@@ -11,7 +11,10 @@ def index(request):
         anim = Animation.objects.create(name=request.POST['name'], user=request.user)
         for img in request.FILES.getlist('imgs'):
             Image.objects.create(animation=anim, image=img, user=request.user)
-        anim.enqueue({})
+        
+        anim.enqueue({
+            'framerate': request.POST['frames']
+        })
         return redirect(f'/details/{anim.pk}')
 
     anims = Animation.objects.filter(user=request.user)
